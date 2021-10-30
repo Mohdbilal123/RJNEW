@@ -6,7 +6,7 @@ from PIL import ImageTk, Image
 class All_FUNCTION:
     def about(self):
        f=Frame(root,width=500,height=500).place(x=0,y=0)
-       Button(f,text='Back',command=self.home).place(x=20,y=20)
+       Button(f,text='Back',bg="red",command=self.home).place(x=10,y=450)
        
     def ITEMS(self):
         #msg.showinfo('INFO','This is RAJAT\'s BAKERY')
@@ -56,8 +56,8 @@ class Main(All_FUNCTION):
         Button(frame,text='  ABOUT',bg='white',padx=50,command=self.about).place(x=50,y=150)
         Button(frame,text='BUY',bg='white',padx=60,command=self.buyitems).place(x=50,y=190)
         Button(frame,text='ITEMS',bg='white',padx=54,command=self.buyitems).place(x=50,y=230)
-        Button(frame,text='PAYMENT',bg='white',padx=45).place(x=50,y=270)
-        Button(frame,text='CUSTOMER DETAILS',bg='white',padx=20).place(x=50,y=310)
+        Button(frame,text='PAYMENT',bg='white',padx=45,command=self.about).place(x=50,y=270)
+        Button(frame,text='CUSTOMER DETAILS',bg='white',padx=20,command=self.about).place(x=50,y=310)
         Button(frame,text='EXIT',bg='white',padx=57).place(x=50,y=350)
         
     def buyitems(self):
@@ -70,9 +70,15 @@ class Main(All_FUNCTION):
         for i in self.items.keys():
             l.insert(END,i)
         global quantity
+        global price
+
+        self.price=0
         self.q=0
-        quantity=Label(frame,text='Quantity : '+str(self.q),font='verdana 13 bold')
+        price=Label(frame,text='price: '+str(self.q),bg='white',font='verdana 13 bold')
+        quantity=Label(frame,text='Quantity : '+str(self.price),bg='white',font='verdana 13 bold')
         quantity.place(x=300,y=400)
+        price.place(x=300,y=350)
+        
         
     
 
@@ -81,7 +87,10 @@ class Main(All_FUNCTION):
     def inc(self):
         global quantity
         self.q+=1
+        self.price
+
         quantity.config(text='Quantity : '+str(self.q))
+        price.config(text='price : '+str(self.price))
     def bookings(self):
         frame=Frame(self.root,width=self.width,
                     height=self.height,bg='white').place(x=0,y=0)
@@ -106,6 +115,17 @@ class Main(All_FUNCTION):
         a3.bind('<Button-1>',lambda e:number.set(''))
 
         Button(frame,text='Submit').place(x=20,y=445)
+
+    def payment(self):
+        f=Frame(root,width=500,height=500).place(x=0,y=0)
+        Button(f,text='Back',bg="red",command=self.home).place(x=10,y=450)
+
+    def customer_details(self):
+        f=Frame(root,width=500,height=500).place(x=0,y=0)
+        Button(f,text='Back',bg="red",command=self.home).place(x=10,y=450)
+
+    def exit(self):
+        exit()
         
         
 if __name__=='__main__':
